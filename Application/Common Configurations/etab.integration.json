@@ -1,0 +1,303 @@
+﻿/**
+ *  etab.integration.json
+ *
+ *  eTab Sites Configuration
+ *  Integration Server
+ *
+ *  Contains the following site configurations:
+ *
+ *    - Acura Live/Preview
+ *    - Acura Staging
+ *    - Honda Live/Preview
+ *    - Honda Staging
+ *
+ */
+
+[
+
+  /**
+   * Acura Live/Preview
+   */
+
+  {
+    "Name": "eTabAcuraLive",
+    "PhysicalPath": "D:\\websites\\eTab\\Live\\Acura",
+    "ManagedRuntimeVersion": "v4.0",
+    "DefaultBinding": {
+      "Protocol": "http",
+      "IpAddress": "*",
+      "Hostname": "integration-etab.acura.ca",
+      "Port": 80
+    },
+    "Bindings": [{
+      "Protocol": "http",
+      "IpAddress": "*",
+      "Hostname": "integration-preview-etab.acura.ca",
+      "Port": 80
+    }],
+    "Applications": [{
+      "Name": "Deals",
+      "Path": "/Deals",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Acura\\Deals"
+    }, {
+      "Name": "Bulletins",
+      "Path": "/Bulletins",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Acura\\Bulletins"
+    }],
+    "VirtualDirectories": [{
+      "Name": "api",
+      "Path": "/api",
+      "PhysicalPath": "D:\\websites\\AcuraApi\\api",
+      "Applications": [{
+        "Name": "BuildIt",
+        "Path": "/api/BuildIt",
+        "PhysicalPath": "D:\\websites\\AcuraBuildItApi"
+      }, {
+        "Name": "Financials",
+        "Path": "/api/Financials",
+        "PhysicalPath": "D:\\websites\\AcuraFinancialCalculatorApi"
+      }]
+    }, {
+      "Name": "ImageCache",
+      "Path": "/ImageCache",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Acura\\ImageCache"
+    }, {
+      "Name": "ProfileImages",
+      "Path": "/ProfileImages",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Acura\\ProfileImages"
+    }, {
+      "Name": "det",
+      "Path": "/Content/det",
+      "PhysicalPath": "D:\\websites\\LiveContent\\server1\\DET\\Images\\ProductLine"
+    }, {
+      "Name": "hac",
+      "Path": "/Content/hac",
+      "PhysicalPath": "D:\\websites\\LiveContent\\server1\\HAC\\images"
+    }, {
+      "Name": "acura.ca",
+      "Path": "/Content/acura.ca",
+      "PhysicalPath": "D:\\websites\\navatis.cms.live.content\\acura.ca"
+    }],
+    "ServiceAccount": {
+      "Username": "csmillie",
+      "Password": "c1im@xmedi@"
+    },
+    "Options": {
+      "CreatePhysicalDirectory": false,
+      "DeleteExistingSite": true,
+      "DeleteExistingAppPools": true
+    }
+  },
+
+  /**
+   * Acura Staging
+   */
+
+  {
+    "Name": "eTabAcuraStaging",
+    "PhysicalPath": "D:\\websites\\eTab\\Staging\\Acura",
+    "ManagedRuntimeVersion": "v4.0",
+    "DefaultBinding": {
+      "Protocol": "http",
+      "IpAddress": "*",
+      "Hostname": "integration-staging-etab.acura.ca",
+      "Port": 80
+    },
+    "Bindings": [],
+    "Applications": [{
+      "Name": "Deals",
+      "Path": "/Deals",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Acura\\Deals"
+    }, {
+      "Name": "Bulletins",
+      "Path": "/Bulletins",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Acura\\Bulletins"
+    }],
+    "VirtualDirectories": [{
+      "Name": "api",
+      "Path": "/api",
+      "PhysicalPath": "D:\\websites\\AcuraApi\\api",
+      "Applications": [{
+        "Name": "BuildIt",
+        "Path": "/api/BuildIt",
+        "PhysicalPath": "D:\\websites\\AcuraBuildItApi"
+      }, {
+        "Name": "Financials",
+        "Path": "/api/Financials",
+        "PhysicalPath": "D:\\websites\\AcuraFinancialCalculatorApi"
+      }]
+    }, {
+      "Name": "ImageCache",
+      "Path": "/ImageCache",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Acura\\ImageCache"
+    }, {
+      "Name": "ProfileImages",
+      "Path": "/ProfileImages",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Acura\\ProfileImages"
+    }, {
+      "Name": "det",
+      "Path": "/Content/det",
+      "PhysicalPath": "D:\\websites\\Asimo.DET\\images\\ProductLine"
+    }, {
+      "Name": "hac",
+      "Path": "/Content/hac",
+      "PhysicalPath": "D:\\websites\\Asimo.HAC\\data\\images"
+    }, {
+      "Name": "acura.ca",
+      "Path": "/Content/acura.ca",
+      "PhysicalPath": "D:\\websites\\navatis.cms\\acura.ca"
+    }],
+    "ServiceAccount": {
+      "Username": "csmillie",
+      "Password": "c1im@xmedi@"
+    },
+    "Options": {
+      "CreatePhysicalDirectory": false,
+      "DeleteExistingSite": true,
+      "DeleteExistingAppPools": true
+    }
+  },
+
+  /**
+   * Honda Live/Preview
+   */
+
+  {
+    "Name": "eTabHondaLive",
+    "PhysicalPath": "D:\\websites\\eTab\\Live\\Honda",
+    "ManagedRuntimeVersion": "v4.0",
+    "DefaultBinding": {
+      "Protocol": "http",
+      "IpAddress": "*",
+      "Hostname": "integration-etab.honda.ca",
+      "Port": 80
+    },
+    "Bindings": [{
+      "Protocol": "http",
+      "IpAddress": "*",
+      "Hostname": "integration-preview-etab.honda.ca",
+      "Port": 80
+    }],
+    "Applications": [{
+      "Name": "Deals",
+      "Path": "/Deals",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Honda\\Deals"
+    }, {
+      "Name": "Bulletins",
+      "Path": "/Bulletins",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Honda\\Bulletins"
+    }],
+    "VirtualDirectories": [{
+      "Name": "api",
+      "Path": "/api",
+      "PhysicalPath": "D:\\websites\\HondaApi\\api",
+      "Applications": [{
+        "Name": "BuildIt",
+        "Path": "/api/BuildIt",
+        "PhysicalPath": "D:\\websites\\HondaBuildItApi"
+      }, {
+        "Name": "Financials",
+        "Path": "/api/Financials",
+        "PhysicalPath": "D:\\websites\\HondaFinancialCalculatorApi"
+      }]
+    }, {
+      "Name": "ImageCache",
+      "Path": "/ImageCache",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Honda\\ImageCache"
+    }, {
+      "Name": "ProfileImages",
+      "Path": "/ProfileImages",
+      "PhysicalPath": "D:\\websites\\eTab\\Live\\Honda\\ProfileImages"
+    }, {
+      "Name": "det",
+      "Path": "/Content/det",
+      "PhysicalPath": "D:\\websites\\LiveContent\\server1\\DET\\Images\\ProductLine"
+    }, {
+      "Name": "hac",
+      "Path": "/Content/hac",
+      "PhysicalPath": "D:\\websites\\LiveContent\\server1\\HAC\\images"
+    }, {
+      "Name": "honda.ca",
+      "Path": "/Content/honda.ca",
+      "PhysicalPath": "D:\\websites\\navatis.cms.live.content\\honda.ca"
+    }],
+    "ServiceAccount": {
+      "Username": "csmillie",
+      "Password": "c1im@xmedi@"
+    },
+    "Options": {
+      "CreatePhysicalDirectory": false,
+      "DeleteExistingSite": true,
+      "DeleteExistingAppPools": true
+    }
+  },
+
+  /**
+   * Honda Staging
+   */
+
+  {
+    "Name": "eTabHondaStaging",
+    "PhysicalPath": "D:\\websites\\eTab\\Staging\\Honda",
+    "ManagedRuntimeVersion": "v4.0",
+    "DefaultBinding": {
+      "Protocol": "http",
+      "IpAddress": "*",
+      "Hostname": "integration-staging-etab.honda.ca",
+      "Port": 80
+    },
+    "Bindings": [],
+    "Applications": [{
+      "Name": "Deals",
+      "Path": "/Deals",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Honda\\Deals"
+    }, {
+      "Name": "Bulletins",
+      "Path": "/Bulletins",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Honda\\Bulletins"
+    }],
+    "VirtualDirectories": [{
+      "Name": "api",
+      "Path": "/api",
+      "PhysicalPath": "D:\\websites\\HondaApi\\api",
+      "Applications": [{
+        "Name": "BuildIt",
+        "Path": "/api/BuildIt",
+        "PhysicalPath": "D:\\websites\\HondaBuildItApi"
+      }, {
+        "Name": "Financials",
+        "Path": "/api/Financials",
+        "PhysicalPath": "D:\\websites\\HondaFinancialCalculatorApi"
+      }]
+    }, {
+      "Name": "ImageCache",
+      "Path": "/ImageCache",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Honda\\ImageCache"
+    }, {
+      "Name": "ProfileImages",
+      "Path": "/ProfileImages",
+      "PhysicalPath": "D:\\websites\\eTab\\Staging\\Honda\\ProfileImages"
+    }, {
+      "Name": "det",
+      "Path": "/Content/det",
+      "PhysicalPath": "D:\\websites\\Asimo.DET\\images\\ProductLine"
+    }, {
+      "Name": "hac",
+      "Path": "/Content/hac",
+      "PhysicalPath": "D:\\websites\\Asimo.HAC\\data\\images"
+    }, {
+      "Name": "honda.ca",
+      "Path": "/Content/honda.ca",
+      "PhysicalPath": "D:\\websites\\navatis.cms\\honda.ca"
+    }],
+    "ServiceAccount": {
+      "Username": "csmillie",
+      "Password": "c1im@xmedi@"
+    },
+    "Options": {
+      "CreatePhysicalDirectory": false,
+      "DeleteExistingSite": true,
+      "DeleteExistingAppPools": true
+    }
+  }
+]
