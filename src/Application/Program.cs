@@ -21,7 +21,7 @@ namespace IisInstaller
         private static JsonSerializer _jsonSerializer;
         private static Logger _logger;
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             try
             {
@@ -55,11 +55,15 @@ namespace IisInstaller
                 }
 
                 _logger.Info("Installation complete!");
+
+                return 0;
             }
             catch (Exception ex)
             {
                 _logger.Error("Installation failed: ");
                 _logger.Error(ex);
+
+                return 1;
             }
             finally
             {
