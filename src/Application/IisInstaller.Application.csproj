@@ -82,6 +82,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Common Configurations\etab.integration.json" />
+    <None Include="Common Configurations\honda-motorcycle-local.json" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

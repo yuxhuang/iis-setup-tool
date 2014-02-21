@@ -70,6 +70,7 @@ namespace IisInstaller
         private static IList<IisSite> GetSites(string filePath)
         {
             _logger.Info("Locating installation data from {0}...", filePath);
+            
             if (File.Exists(filePath))
             {
                 return JsonConvert.DeserializeObject<List<IisSite>>(File.ReadAllText(filePath));
@@ -240,10 +241,13 @@ namespace IisInstaller
                 rootApp.ApplicationPoolName = site.AppPoolName;
 
                 // Add the rest of the bindings
-                foreach (IisSiteBinding binding in site.Bindings)
+                if (site.Bindings != null)
                 {
-                    _logger.Info(string.Format("Adding additional binding {0}:{1}...", binding.Protocol, binding.BindingInformation));
-                    createdSite.Bindings.Add(binding.BindingInformation, binding.Protocol);
+                    foreach (IisSiteBinding binding in site.Bindings)
+                    {
+                        _logger.Info(string.Format("Adding additional binding {0}:{1}...", binding.Protocol, binding.BindingInformation));
+                        createdSite.Bindings.Add(binding.BindingInformation, binding.Protocol);
+                    }
                 }
 
                 _logger.Info(string.Format("Configuring additional site options..."));

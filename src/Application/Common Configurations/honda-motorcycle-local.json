@@ -1,0 +1,59 @@
+﻿/**
+ *
+ *  Honda MC 
+ *  Local development configuration
+ *
+ *  Author: Terry
+ */
+
+[
+  {
+    "Name": "HondaMC",
+    "PhysicalPath": "C:\\Terry\\Development\\HondaMC\\vin-recall",
+    "ManagedRuntimeVersion": "v4.0",
+    "DefaultBinding": {
+      "Protocol": "http",
+      "IpAddress": "*",
+      "Hostname": "dev.motorcycle.honda.ca",
+      "Port": 80
+    },
+    "Applications": [
+      {
+        "Name": "Asimo.Security",
+        "Path": "/Asimo.Security",
+        "PhysicalPath": "C:\\Terry\\Development\\HondaAsimoSecurity\\trunk\\Honda.Asimo.Security.Web"
+      }, {
+        "Name": "Content",
+        "Path": "/Content",
+        "PhysicalPath": "C:\\Terry\\Development\\HondaCMS\\staging\\Navantis.Honda.CMS.Web"
+      }
+    ],
+    "VirtualDirectories": 
+    [
+      {
+        "Name": "api",
+        "Path": "/api",
+        "PhysicalPath": "C:\\Terry\\Development\\APIs",
+        "Applications": [{
+            "Name": "BuildIt",
+            "Path": "/api/BuildIt",
+            "PhysicalPath": "C:\\Terry\\Development\\APIs\\BuildIt"
+          }, {
+            "Name": "Financials",
+            "Path": "/api/FinancialCalculator",
+            "PhysicalPath": "C:\\Terry\\Development\\APIs\\FinancialCalculator"
+          }
+        ]
+      }
+    ],
+    "ServiceAccount": {
+      "Username": "web",
+      "Password": "yjWDVd8Pk8ipCh"
+    },
+    "Options": {
+      "CreatePhysicalDirectory": false,
+      "DeleteExistingSite": true,
+      "DeleteExistingAppPools": true
+    }
+  }
+]
