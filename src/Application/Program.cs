@@ -70,7 +70,7 @@ namespace IisInstaller
         private static IList<IisSite> GetSites(string filePath)
         {
             _logger.Info("Locating installation data from {0}...", filePath);
-            
+
             if (File.Exists(filePath))
             {
                 return JsonConvert.DeserializeObject<List<IisSite>>(File.ReadAllText(filePath));
@@ -89,7 +89,21 @@ namespace IisInstaller
                 app.AppPoolName = site.Name;
             }
 
+            // If no service account was specifically assigned to this app use the default
+            if (app.ServiceAccount == null)
+            {
+                app.ServiceAccount = site.ServiceAccount;
+            }
+
             var appPool = _serverManager.ApplicationPools.SingleOrDefault(x => x.Name == app.AppPoolName);
+
+            if (site.Options.DeleteExistingAppPools && appPool != null)
+            {
+                // If the option is set to delete existing app pools and this one exists, delete it
+                _serverManager.ApplicationPools.Remove(appPool);
+                appPool = null;
+            }
+
             if (appPool == null)
             {
                 _logger.Info("App pool {0} not found, creating...", app.AppPoolName);
@@ -101,16 +115,11 @@ namespace IisInstaller
                 });
             }
 
-            if (app.ServiceAccount == null)
-            {
-                app.ServiceAccount = site.ServiceAccount;
-            }
-
             Application createdApp = createdSite.Applications.Add(app.Path, app.PhysicalPath);
             createdApp.VirtualDirectories[0].UserName = app.ServiceAccount.Username;
             createdApp.VirtualDirectories[0].Password = app.ServiceAccount.Password;
             createdApp.ApplicationPoolName = app.AppPoolName;
-            
+
             if (app.VirtualDirectories != null)
             {
                 _logger.Info(string.Format("Creating child application virtual directories..."));
@@ -130,7 +139,7 @@ namespace IisInstaller
 
         static ApplicationPool CreateAppPool(IisApplicationPool pool)
         {
-            _logger.Info("Creating application pool {0}...", pool.Name);            
+            _logger.Info("Creating application pool {0}...", pool.Name);
 
             var appPool = _serverManager.ApplicationPools.Add(pool.Name);
             appPool.ProcessModel.UserName = pool.ServiceAccount.Username;
@@ -149,7 +158,7 @@ namespace IisInstaller
             if (virtualDir.ServiceAccount == null)
             {
                 virtualDir.ServiceAccount = site.ServiceAccount;
-            }     
+            }
 
             VirtualDirectory newVirtualDir = createdApp.VirtualDirectories.Add(virtualDir.Path, virtualDir.PhysicalPath);
             newVirtualDir.UserName = virtualDir.ServiceAccount.Username;
@@ -217,10 +226,18 @@ namespace IisInstaller
                 {
                     site.AppPoolName = site.Name;
                     _logger.Info("No application pool name specificed, using site name {0}", site.AppPoolName);
-                                      
+
                 }
 
                 var appPool = _serverManager.ApplicationPools.SingleOrDefault(x => x.Name == site.AppPoolName);
+
+                if (site.Options.DeleteExistingAppPools && appPool != null)
+                {
+                    // If the option is set to delete existing app pools and this one exists, delete it
+                    _serverManager.ApplicationPools.Remove(appPool);
+                    appPool = null;
+                }
+
                 if (appPool == null)
                 {
                     _logger.Info("App pool {0} not found, creating...", site.AppPoolName);
@@ -256,9 +273,9 @@ namespace IisInstaller
                 createdSite.ServerAutoStart = site.ServerAutoStart.HasValue ? site.ServerAutoStart.Value : true;
 
                 _logger.Info(string.Format("Creating root Virtual Directories..."));
-                
+
                 foreach (IisSiteVirtualDirectory vd in site.VirtualDirectories)
-                {             
+                {
                     CreateVirtualDirectory(createdSite, rootApp, site, vd);
                 }
 
