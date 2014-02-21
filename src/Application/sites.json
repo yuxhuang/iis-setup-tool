@@ -1,0 +1,23 @@
+﻿[{
+  "Name": "Test Site",
+  "PhysicalPath": "C:\\inetpub\\wwwroot",
+  "ManagedRuntimeVersion": "v4.0",
+  "DefaultBinding": {
+    "Protocol": "http",
+    "IpAddress": "*",
+    "Hostname": "localhost",
+    "Port": 80
+  },
+  "Bindings": [],
+  "Applications": [],
+  "VirtualDirectories": [],
+  "ServiceAccount": {
+    "Username": "",
+    "Password": ""
+  },
+  "Options": {
+    "CreatePhysicalDirectory": false,
+    "DeleteExistingSite": true,
+    "DeleteExistingAppPools": true
+  }
+}]
